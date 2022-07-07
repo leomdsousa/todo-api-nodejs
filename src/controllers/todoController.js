@@ -38,6 +38,10 @@ module.exports.add = async (req, res) => {
 module.exports.update = async (req, res) => {
     try {
         const id = req.params.id;
+
+        if(!id)
+            res.status(400).json({ error: 'Id was not sent.'})
+
         const data = await service.update(req.body, id);
         res.status(200).json(data);
     } catch(error) {

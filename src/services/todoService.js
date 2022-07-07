@@ -59,7 +59,8 @@ module.exports = class TodoService {
 
             input = new todo(obj);
             
-            const data = repository.update(input);
+            let data = await repository.update(input);
+            
             return data;
         } catch(error){
             console.log(`An error occured: ${error}`);

@@ -27,7 +27,14 @@ module.exports = class {
 
     static update(obj) {
         try {
-            return todo.updateOne(obj);
+            todo.findOneAndUpdate({ "_id": obj._id }, obj, { new: true }, async (err, doc) => 
+            {
+                if(err){
+                    return { err }; 
+                } else {
+                    return doc;
+                }
+            });
         } catch(error){
             console.log(`An error occured: ${error}`);
         }
